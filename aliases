@@ -1,0 +1,91 @@
+#
+#Command aliases
+#
+
+alias gethr='geth --rinkeby'
+alias btcl='bitcoin-cli -testnet'
+alias ....='cd ../..'
+alias :e=vim
+alias :qa=exit
+alias :sp='test -n "$TMUX" && tmux split-window'
+alias :vs='test -n "$TMUX" && tmux split-window -h'
+alias :wq=exit
+alias a=ag
+alias b=bundle
+alias be='bundle exec'
+alias cd..='cd ..'
+alias cdtmp='cd $(mktemp -d $TMPDIR/$USER-cdtmp-XXXXXX)'
+alias clip='nc -U ~/.clipper.sock'
+alias d='hash -d'
+alias e=exit
+alias g=git
+alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
+alias h=history
+alias j=jump
+alias l='ls -F'
+alias ll='ls -laF'
+alias m=mosh
+alias o='git oneline'
+alias p='git patch'
+alias prettyjson='python -m json.tool'
+alias oo='git oneline -10'
+alias s=ssh
+alias serve='python -m SimpleHTTPServer' # optional arg: port (defaults to 8000)
+alias t=tmux
+alias v=vim
+alias pa='php artisan'
+alias gcm='git commit'
+alias ssh_loc_server='ssh artem@192.168.0.102'
+alias kcl='kubectl'
+alias cl='clear'
+alias phpp="php -d xdebug.profiler_enable=1"
+
+if command -v nvim &> /dev/null; then
+  alias vim=nvim # Use `\vim` or `command vim` to get the real vim.
+fi
+
+#
+# Suffix aliases
+# (eg. "foo.md" to open Markdown files in "Marked 2.app")
+#
+alias -s md='open -a "Marked 2.app"'
+
+#
+# Global aliases
+# (work at any position within the command line)
+#
+
+# Mnemonic: "[C]lip"
+alias -g C="|clip"
+
+# Mnemonic: "[G]rep"
+alias -g G="|grep"
+
+# Mnemonic: "[H]ead"
+alias -g H="|head"
+
+# Pretty-print JSON.
+# Mnemonic: "[J]SON"
+alias -g J="|python -m json.tool"
+
+# Mnemonic: "[L]ess"
+alias -g L="|less"
+
+# Mnemonic: "[R]eset"
+alias -g R=";clear;test -n "$TMUX" && tmux clear-history;"
+
+alias dc="docker"
+alias dcc="docker-compose"
+alias t="tmux"
+alias g="git"
+alias docker_es="cd ~/www/EssayDaddy/docker/developers/local/admin"
+alias docker_tu="cd ~/www/Tutoriage/docker/developers/local/frontProxy"
+
+# Servers
+############## Fasivery #############
+alias ssh_fw_dev="ssh root@23.254.144.211"
+alias ssh_fw_prod="ssh root@23.254.128.76"
+
+############## Crypto #############
+alias ssh_crypto="ssh web@146.185.131.104"
+
