@@ -1,0 +1,3 @@
+[submodule "plugins/fzf-forgit"]
+	path = plugins/fzf-forgit
+	url = git@github.com:wfxr/forgit.git
