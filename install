@@ -18,9 +18,11 @@ install () {
     if is_installed $1; then
         echo -e "$BOLD $1 $GREEN- is installed!"
     else
+        echo -e "Installing $BOLD $1 ..."
         install_via_package $1
     fi
 }
+
 
 ############### ZSH ###############
 # Install zsh
@@ -34,5 +36,7 @@ install powerline
 install fonts-powerline
 
 # Create symbolyc link for .zshrc config file
-[[ -f $HOME/.zshrc ]] || mv $HOME/.zshrc.old
+[[ -f $HOME/.zshrc ]] && mv $HOME/.zshrc $HOME/.zshrc.old
 ln -s $HOME/.zsh/.zshrc $HOME/.zshrc
+
+exec zsh -l
