@@ -27,8 +27,12 @@ install () {
 install zsh
 
 # Install oh-my-zsh
-sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+[[ -d $HOME/.oh-my-zsh ]] || sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Install powerline fonts
 install powerline
 install fonts-powerline
+
+# Create symbolyc link for .zshrc config file
+[[ -f $HOME/.zshrc ]] || mv $HOME/.zshrc.old
+ln -s $HOME/.zsh/.zshrc $HOME/.zshrc
