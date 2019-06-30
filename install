@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# Colors
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+
+BOLD="\033[1m"
+
+is_installed () {
+     which $1
+}
+
+install_via_package () {
+    sudo apt install -y $1
+}
+
+install () {
+    if is_installed $1; then
+        echo -e "$BOLD $1 $GREEN- is installed!"
+    else
+        install_via_package $1
+    fi
+}
+
+############### ZSH ###############
+# Install zsh
+install zsh
+
+# Install powerline fonts
+install powerline
+install fonts-powerline
+
+
+############### Plugins ###############
