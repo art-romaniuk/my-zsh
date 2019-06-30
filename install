@@ -35,6 +35,9 @@ install zsh
 install powerline
 install fonts-powerline
 
+# Install silver search
+install silversearcher-ag
+
 # Create symbolyc link for .zshrc config file
 [[ -f $HOME/.zshrc ]] && mv $HOME/.zshrc $HOME/.zshrc.old
 ln -s $HOME/.zsh/.zshrc $HOME/.zshrc
