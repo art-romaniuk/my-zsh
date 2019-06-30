@@ -26,9 +26,9 @@ install () {
 # Install zsh
 install zsh
 
+# Install oh-my-zsh
+sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 # Install powerline fonts
 install powerline
 install fonts-powerline
-
-
-############### Plugins ###############

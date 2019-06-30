@@ -2,8 +2,8 @@
 # Zsh config
 #
 
-ZSH=$HOME/.zsh
-OH_MY_ZSH=$HOME/.oh-my-zsh 
+MY_ZSH=$HOME/.zsh
+ZSH=$HOME/.oh-my-zsh 
 
 DISABLE_AUTO_UPDATE=true
 
@@ -11,8 +11,8 @@ DISABLE_AUTO_UPDATE=true
 ############################### Plug-ins ##############################
 #
 
-source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
+source $MY_ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+MY_ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 #source ~/.dotfiles/antigen.zsh
 #source ~/.oh-my-zsh/plugins/jump/jump.plugin.zsh
@@ -21,8 +21,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 DISABLE_AUTO_UPDATE=true
 
 plugins=(
-    zsh-syntax-highlighting
-    zsh-completions
     git
     wd
     z
@@ -35,7 +33,7 @@ source ~/.oh-my-zsh/oh-my-zsh.sh
 ############################## Completion ##############################
 #
 
-fpath=($ZSH/completions $fpath)
+fpath=($MY_ZSH/completions $fpath)
 
 autoload -U compinit
 compinit -u
@@ -328,12 +326,12 @@ zstyle ':chpwd:*' recent-dirs-default true
 
 # Local and host-specific overrides.
 
-DEV_RC=$ZSH/host/dev-star
+DEV_RC=$MY_ZSH/host/dev-star
 if [ $(hostname -s) =~ '^dev(vm)?[[:digit:]]+' ]; then
     test -f $DEV_RC && source $DEV_RC
 fi
 
-HOST_RC=$ZSH/host/$(hostname -s)
+HOST_RC=$MY_ZSH/host/$(hostname -s)
 test -f $HOST_RC && source $HOST_RC
 
 LOCAL_RC=$HOME/.zshrc.local
@@ -363,7 +361,7 @@ do
     fi
 done
 
-BASE16_SHELL=$ZSH/plugins/base16-shell/
+BASE16_SHELL=$MY_ZSH/plugins/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 
@@ -405,4 +403,4 @@ export FZF_DEFAULT_OPTS="
 
 # Find commands for "Ctrl+T" and "Opt+C" shortcuts
 
-[ -f $ZSH/plugins/fzf-forgit/forgit.plugin.zsh ] && source $ZSH/plugins/fzf-forgit/forgit.plugin.zsh
+[ -f $MY_ZSH/plugins/fzf-forgit/forgit.plugin.zsh ] && source $MY_ZSH/plugins/fzf-forgit/forgit.plugin.zsh
