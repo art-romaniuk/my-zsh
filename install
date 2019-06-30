@@ -39,4 +39,10 @@ install fonts-powerline
 [[ -f $HOME/.zshrc ]] && mv $HOME/.zshrc $HOME/.zshrc.old
 ln -s $HOME/.zsh/.zshrc $HOME/.zshrc
 
+# Load zsh
 exec zsh -l
+
+# Set zsh as default shell
+sudo chsh -s $(which zsh)
+
+echo -e "$BOLD $GREEN Log out and login back again to use your new default shell."
