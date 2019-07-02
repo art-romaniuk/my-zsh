@@ -42,6 +42,12 @@ install silversearcher-ag
 [[ -f $HOME/.zshrc ]] && mv $HOME/.zshrc $HOME/.zshrc.old
 ln -s $HOME/.zsh/.zshrc $HOME/.zshrc
 
+# Install fzf fuzzy finder
+if [[ ! -d $HOME/.fzf ]]; then
+     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+     ~/.fzf/install
+fi
+
 # Load zsh
 exec zsh -l
 
