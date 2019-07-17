@@ -16,7 +16,7 @@ alias be='bundle exec'
 alias cd..='cd ..'
 alias cdtmp='cd $(mktemp -d $TMPDIR/$USER-cdtmp-XXXXXX)'
 alias clip='nc -U ~/.clipper.sock'
-alias d='hash -d'
+alias dh='hash -d'
 alias e=exit
 alias g=git
 alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
@@ -40,10 +40,6 @@ alias kcl='kubectl'
 alias cl='clear'
 alias phpp="php -d xdebug.profiler_enable=1"
 alias python="python3"
-
-if command -v nvim &> /dev/null; then
-  alias vim=nvim # Use `\vim` or `command vim` to get the real vim.
-fi
 
 #
 # Suffix aliases
@@ -75,8 +71,8 @@ alias -g L="|less"
 # Mnemonic: "[R]eset"
 alias -g R=";clear;test -n "$TMUX" && tmux clear-history;"
 
-alias dc="docker"
-alias dcc="docker-compose"
+alias d="docker"
+alias dc="docker-compose"
 alias t="tmux"
 alias g="git"
 alias docker_es="cd ~/www/EssayDaddy/docker/developers/local/admin"
@@ -86,3 +82,4 @@ alias docker_tu="cd ~/www/Tutoriage/docker/developers/local/frontProxy"
 ############## Crypto #############
 alias ssh_crypto="ssh web@146.185.131.104"
 
+alias lzd='lazydocker'

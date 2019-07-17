@@ -71,12 +71,12 @@ colors
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git hg
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr "%F{green}● %f" # default 'S'
-zstyle ':vcs_info:*' unstagedstr "%F{red}● %f" # default 'U'
+zstyle ':vcs_info:*' stagedstr "%F{green}⏺ %f" # default 'S'
+zstyle ':vcs_info:*' unstagedstr "%F{red}⏺ %f" # default 'U'
 zstyle ':vcs_info:*' use-simple true
 zstyle ':vcs_info:git+set-message:*' hooks git-untracked
-zstyle ':vcs_info:git*:*' formats '%F{red}[%b%m%c%u]%f ' # default ' (%s)-[%b]%c%u-'
-zstyle ':vcs_info:git*:*' actionformats '[%b|%a%m%c%u] ' # default ' (%s)-[%b|%a]%c%u-'
+zstyle ':vcs_info:git*:*' formats '%F{red}[%b%m%c%u%F{red}] ' # default ' (%s)-[%b]%c%u-'
+zstyle ':vcs_info:git*:*' actionformats '[%b|%a%m%c%u]%f ' # default ' (%s)-[%b|%a]%c%u-'
 zstyle ':vcs_info:hg*:*' formats '[%m%b] '
 zstyle ':vcs_info:hg*:*' actionformats '[%b|%a%m] '
 zstyle ':vcs_info:hg*:*' branchformat '%b'
@@ -107,7 +107,7 @@ return 0
 function +vi-git-untracked() {
 emulate -L zsh
 if [[ -n $(git ls-files --exclude-standard --others 2> /dev/null) ]]; then
-    hook_com[unstaged]+="%F{blue}● %f"
+    hook_com[unstaged]+="%F{blue}⏺ %f"
 fi
 }
 
@@ -121,11 +121,12 @@ function () {
     else
         local LVL=$SHLVL
     fi
+    # New suffix check
     if [[ $EUID -eq 0 ]]; then
-        local SUFFIX=$(printf '#%.0s' {1..$LVL})
-    else
-        local SUFFIX=$(printf '\$%.0s' {1..$LVL})
-    fi
+        local SUFFIX='%F{yellow}%n%f'$(printf '%%F{yellow}\u276f%.0s%%f' {1..$LVL})
+      else
+        local SUFFIX=$(printf '%%F{red}\u276f%.0s%%f' {1..$LVL})
+      fi
     if [[ -n "$TMUX" ]]; then
         # Note use a non-breaking space at the end of the prompt because we can use it as
         # a find pattern to jump back in tmux.
@@ -297,9 +298,9 @@ function report-start-time() {
     fi
 }
 
-#add-zsh-hook precmd report-start-time
+add-zsh-hook precmd report-start-time
 
-#add-zsh-hook precmd bounce
+add-zsh-hook precmd bounce
 
 function auto-ls-after-cd() {
     emulate -L zsh
@@ -395,6 +396,7 @@ export FZF_DEFAULT_OPTS="
     --reverse
     --multi
     --inline-info
+    --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'
 "
 
 # Change find backend
