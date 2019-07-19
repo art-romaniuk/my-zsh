@@ -297,9 +297,9 @@ function report-start-time() {
     fi
 }
 
-#add-zsh-hook precmd report-start-time
+add-zsh-hook precmd report-start-time
 
-#add-zsh-hook precmd bounce
+add-zsh-hook precmd bounce
 
 function auto-ls-after-cd() {
     emulate -L zsh
