@@ -396,8 +396,12 @@ export FZF_DEFAULT_OPTS="
     --reverse
     --multi
     --inline-info
-    --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'
+    --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid  {}'
 "
+set -g FZF_CTRL_T_COMMAND "command find -L \$dir -type f 2> /dev/null | sed '1d; s#^\./##'"
+
+export BAT_THEME="TwoDark"
+export FZF_CTRL_T_OPTS="$FZF_COMPLETION_OPTS"
 
 # Change find backend
 # Use 'git ls-files' when inside GIT repo, or fd otherwise
