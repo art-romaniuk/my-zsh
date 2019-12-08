@@ -1,48 +1,4 @@
 #
-#Command aliases
-#
-
-alias gethr='geth --rinkeby'
-alias btcl='bitcoin-cli -testnet'
-alias ....='cd ../..'
-alias :e=vim
-alias :qa=exit
-alias :sp='test -n "$TMUX" && tmux split-window'
-alias :vs='test -n "$TMUX" && tmux split-window -h'
-alias :wq=exit
-alias a=ag
-alias b=bundle
-alias be='bundle exec'
-alias cd..='cd ..'
-alias cdtmp='cd $(mktemp -d $TMPDIR/$USER-cdtmp-XXXXXX)'
-alias clip='nc -U ~/.clipper.sock'
-alias dh='hash -d'
-alias e=exit
-alias g=git
-alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
-alias h=history
-alias j=jump
-alias l='ls -F'
-alias ll='ls -laF'
-alias m=mosh
-alias o='git oneline'
-alias p='git patch'
-alias prettyjson='python -m json.tool'
-alias oo='git oneline -10'
-alias s=ssh
-alias serve='python -m SimpleHTTPServer' # optional arg: port (defaults to 8000)
-alias t=tmux
-alias vim='nvim'
-alias pa='php artisan'
-alias gcm='git commit'
-alias ssh_loc_server='ssh artem@192.168.0.102'
-alias kcl='kubectl'
-alias cl='clear'
-alias phpp="php -d xdebug.profiler_enable=1"
-alias console="bin/console"
-alias xserverr="sudo service lightdm restart"
-
-#
 # Suffix aliases
 # (eg. "foo.md" to open Markdown files in "Marked 2.app")
 #
@@ -83,4 +39,47 @@ alias docker_tu="cd ~/www/Tutoriage/docker/developers/local/frontProxy"
 ############## Crypto #############
 alias ssh_crypto="ssh web@146.185.131.104"
 
+#
+#Command aliases
+#
+
+alias gethr='geth --rinkeby'
+alias btcl='bitcoin-cli -testnet'
+alias ....='cd ../..'
+alias :e=vim
+alias :qa=exit
+alias :sp='test -n "$TMUX" && tmux split-window'
+alias :vs='test -n "$TMUX" && tmux split-window -h'
+alias :wq=exit
+alias a=ag
+alias b=bundle
+alias be='bundle exec'
+alias cd..='cd ..'
+alias cdtmp='cd $(mktemp -d $TMPDIR/$USER-cdtmp-XXXXXX)'
+alias clip='nc -U ~/.clipper.sock'
+alias e=exit
+alias g=git
+alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
+alias h=history
+alias j=jump
+alias l='ls -F'
+alias ll='ls -laF'
+alias m=mosh
+alias o='git oneline'
+alias p='git patch'
+alias prettyjson='python -m json.tool'
+alias oo='git oneline -10'
+alias s=ssh
+alias serve='python -m SimpleHTTPServer' # optional arg: port (defaults to 8000)
+alias t=tmux
+alias vim='nvim'
+alias pa='php artisan'
+alias gcm='git commit'
+alias ssh_loc_server='ssh artem@192.168.0.102'
+alias kcl='kubectl'
+alias cl='clear'
+alias phpp="php -d xdebug.profiler_enable=1"
+alias console="bin/console"
+alias xserverr="sudo service lightdm restart"
 alias lzd='lazydocker'
+alias pw='vim ~/Documents/docs/pw.txt'
