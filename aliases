@@ -32,14 +32,15 @@ alias oo='git oneline -10'
 alias s=ssh
 alias serve='python -m SimpleHTTPServer' # optional arg: port (defaults to 8000)
 alias t=tmux
-alias v=nvim
+alias vim='nvim'
 alias pa='php artisan'
 alias gcm='git commit'
 alias ssh_loc_server='ssh artem@192.168.0.102'
 alias kcl='kubectl'
 alias cl='clear'
 alias phpp="php -d xdebug.profiler_enable=1"
-alias python="python3"
+alias console="bin/console"
+alias xserverr="sudo service lightdm restart"
 
 #
 # Suffix aliases

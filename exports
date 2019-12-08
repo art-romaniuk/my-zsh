@@ -59,4 +59,3 @@ export GPG_TTY=$(tty)
 
 export GOPATH=~/code/go
 
-

@@ -396,7 +396,7 @@ export FZF_DEFAULT_OPTS="
     --reverse
     --multi
     --inline-info
-    --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'
+    --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {} 2> /dev/null || echo {}'
 "
 
 # Change find backend
