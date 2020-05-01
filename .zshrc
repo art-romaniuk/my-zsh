@@ -131,12 +131,12 @@ function () {
         # Note use a non-breaking space at the end of the prompt because we can use it as
         # a find pattern to jump back in tmux.
         local NBSP=' '
-        export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%F{blue}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f${NBSP}"
+        export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%B%F{blue}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f${NBSP}"
         export ZLE_RPROMPT_INDENT=0
     else
         # Don't bother with ZLE_RPROMPT_INDENT here, because it ends up eating the
         # space after PS1.
-        export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%F{blue}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f "
+        export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%B%F{blue}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f "
     fi
 }
 export RPROMPT=$RPROMPT_BASE
@@ -291,7 +291,7 @@ function report-start-time() {
         ELAPSED="${ELAPSED}${SECS}"
         local ITALIC_ON=$'\e[3m'
         local ITALIC_OFF=$'\e[23m'
-        export RPROMPT="%F{cyan}%{$ITALIC_ON%}${ELAPSED}%{$ITALIC_OFF%}%f $RPROMPT_BASE"
+        export RPROMPT="%B%F{cyan}%{$ITALIC_ON%}${ELAPSED}%{$ITALIC_OFF%}%f $RPROMPT_BASE"
         unset ZSH_START_TIME
     else
         export RPROMPT="$RPROMPT_BASE"
@@ -410,3 +410,10 @@ export FZF_CTRL_T_OPTS="$FZF_COMPLETION_OPTS"
 # Find commands for "Ctrl+T" and "Opt+C" shortcuts
 
 [ -f $MY_ZSH/plugins/fzf-forgit/forgit.plugin.zsh ] && source $MY_ZSH/plugins/fzf-forgit/forgit.plugin.zsh
+
+# Go lang configurations
+export PATH=$PATH:$GOROOT/bin
+export GOPATH=$HOME/.golib
+
+export PATH=$PATH:$GOPATH/bin
+export GOPATH=$GOPATH:$HOME/www/go
