@@ -1,0 +1,13 @@
+############## Promo Stage #############
+alias ssh_promo_stage="ssh coffeeman@213.196.36.116"
+
+
+############## Docker compose #############
+alias dcuposx="docker-sync start && dcoosx up"
+alias dcsst="docker-sync stop && docker-compose stop"
+alias dcup="docker-compose up"
+alias dcst="docker-compose stop"
+alias dcl="docker-compose logs -f"
+
+############## Phpunit #############
+alias phpunit="vendor/bin/phpunit"

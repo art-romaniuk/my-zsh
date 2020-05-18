@@ -65,6 +65,22 @@ fbr() {
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
+# fbrd - delete branch
+fbrd() {
+  local branches branch
+  branches=$(git --no-pager branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git branch -d $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+# dbrp - delete branch
+fbrp() {
+  local branches branch
+  branches=$(git --no-pager branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git push origin $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
 # fco - checkout git branch/tag
 fco() {
   local tags branches target
@@ -79,6 +95,17 @@ fco() {
     fzf --no-hscroll --no-multi -n 2 \
         --ansi) || return
   git checkout $(awk '{print $2}' <<<"$target" )
+}
+
+# fdcp - get docker container port
+fdcp() {
+    local containers container port
+    containers=$(docker container ls) &&
+    container=$(echo "$containers" | fzf --tac +s +m -e) &&
+    echo "$container"
+    port=$(echo "$container" | grep -Eo '\d{5}-' | Grep -Eo '\d{5}') &&
+    print -z "$port" 
+    echo "$port" | pbcopy
 }
 
 # fcoc - checkout git commit

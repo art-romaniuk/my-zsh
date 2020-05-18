@@ -2,10 +2,14 @@
 # Zsh config
 #
 
-MY_ZSH=$HOME/.zsh
+MY_ZSH=$HOME/.dotfiles/.zsh
 ZSH=$HOME/.oh-my-zsh 
 
 DISABLE_AUTO_UPDATE=true
+
+# System path export
+export PATH=/Users/coffeeman/homebrew/bin:$PATH
+export PATH=/Users/coffeeman/.dotfiles/bin:$PATH
 
 #
 ############################### Plug-ins ##############################
@@ -71,8 +75,8 @@ colors
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git hg
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr "%F{green}⏺ %f" # default 'S'
-zstyle ':vcs_info:*' unstagedstr "%F{red}⏺ %f" # default 'U'
+zstyle ':vcs_info:*' stagedstr "%F{green}●%f" # default 'S'
+zstyle ':vcs_info:*' unstagedstr "%F{red}●%f" # default 'U'
 zstyle ':vcs_info:*' use-simple true
 zstyle ':vcs_info:git+set-message:*' hooks git-untracked
 zstyle ':vcs_info:git*:*' formats '%F{red}[%b%m%c%u%F{red}] ' # default ' (%s)-[%b]%c%u-'
@@ -107,7 +111,7 @@ return 0
 function +vi-git-untracked() {
 emulate -L zsh
 if [[ -n $(git ls-files --exclude-standard --others 2> /dev/null) ]]; then
-    hook_com[unstaged]+="%F{blue}⏺ %f"
+    hook_com[unstaged]+="%F{blue}●%f"
 fi
 }
 
@@ -131,12 +135,12 @@ function () {
         # Note use a non-breaking space at the end of the prompt because we can use it as
         # a find pattern to jump back in tmux.
         local NBSP=' '
-        export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%F{blue}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f${NBSP}"
+        export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%B%F{blue}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f${NBSP}"
         export ZLE_RPROMPT_INDENT=0
     else
         # Don't bother with ZLE_RPROMPT_INDENT here, because it ends up eating the
         # space after PS1.
-        export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%F{blue}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f "
+        export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%B%F{blue}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f "
     fi
 }
 export RPROMPT=$RPROMPT_BASE
@@ -213,16 +217,16 @@ bindkey '^Z' fg-bg
 # Other
 #
 
-source $HOME/.zsh/aliases
-source $HOME/.zsh/common
-source $HOME/.zsh/colors
-source $HOME/.zsh/exports
-source $HOME/.zsh/functions
+source $MY_ZSH/aliases
+source $MY_ZSH/common
+source $MY_ZSH/colors
+source $MY_ZSH/exports
+source $MY_ZSH/functions
 #source $HOME/.zsh/hash
-source $HOME/.zsh/path
-source $HOME/.zsh/vars
+source $MY_ZSH/path
+source $MY_ZSH/vars
 
-test -e $HOME/.zsh/functions.private && source $HOME/.zsh/functions.private
+test -e $MY_ZSH/functions.private && source $MY_ZSH/functions.private
 
 #
 # Third-party
@@ -291,7 +295,7 @@ function report-start-time() {
         ELAPSED="${ELAPSED}${SECS}"
         local ITALIC_ON=$'\e[3m'
         local ITALIC_OFF=$'\e[23m'
-        export RPROMPT="%F{cyan}%{$ITALIC_ON%}${ELAPSED}%{$ITALIC_OFF%}%f $RPROMPT_BASE"
+        export RPROMPT="%B%F{cyan}%{$ITALIC_ON%}${ELAPSED}%{$ITALIC_OFF%}%f $RPROMPT_BASE"
         unset ZSH_START_TIME
     else
         export RPROMPT="$RPROMPT_BASE"
@@ -369,10 +373,10 @@ BASE16_SHELL=$MY_ZSH/plugins/base16-shell/
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # fzf via local installation
-if [ -e ~/.fzf ]; then
+if [ -e $HOME/.fzf ]; then
     _append_to_path ~/.fzf/bin
-    source ~/.fzf/shell/key-bindings.zsh
-    source ~/.fzf/shell/completion.zsh
+    source $HOME~/.fzf/shell/key-bindings.zsh
+    source $HOME~/.fzf/shell/completion.zsh
 fi
 
 # fzf + ag configuration
@@ -396,7 +400,7 @@ export FZF_DEFAULT_OPTS="
     --reverse
     --multi
     --inline-info
-    --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid  {}'
+    --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid  {} 2> /dev/null || echo {}'
 "
 set -g FZF_CTRL_T_COMMAND "command find -L \$dir -type f 2> /dev/null | sed '1d; s#^\./##'"
 
@@ -410,3 +414,21 @@ export FZF_CTRL_T_OPTS="$FZF_COMPLETION_OPTS"
 # Find commands for "Ctrl+T" and "Opt+C" shortcuts
 
 [ -f $MY_ZSH/plugins/fzf-forgit/forgit.plugin.zsh ] && source $MY_ZSH/plugins/fzf-forgit/forgit.plugin.zsh
+
+#########################################################################
+# Dcocker
+export UID
+export GID=$(id -g)
+#export HOST_IP=$(ip route get 8.8.8.8 | awk 'NR==1 {print $NF}')
+export HOST_IP=docker.for.mac.localhost
+
+DEVELOPMENT_PATH="~/www"
+#########################################################################
+
+#########################################################################
+# docker-sync
+if which ruby >/dev/null && which gem >/dev/null; then
+    PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+fi
+#########################################################################
+

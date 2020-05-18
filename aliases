@@ -35,10 +35,18 @@ alias g="git"
 alias docker_es="cd ~/www/EssayDaddy/docker/developers/local/admin"
 alias docker_tu="cd ~/www/Tutoriage/docker/developers/local/frontProxy"
 
-# Servers
-############## Crypto #############
-alias ssh_crypto="ssh web@146.185.131.104"
+alias dcuposx="docker-compose -f docker-compose.yml -f docker-compose.osx.yml up"
 
+alias dcoosx="docker-compose -f docker-compose.yml -f docker-compose.osx.yml"
+alias dcdnosx="dcoosx down"
+alias dceosx="dcoosx exec"
+alias dclosx="dcoosx logs"
+alias dclfosx="dcoosx logs -f"
+alias dcpsosx="dcoosx ps"
+alias dcuposx="dcoosx up"
+
+# Servers
+[ -f $MY_ZSH/local_aliases ] && source $MY_ZSH/local_aliases
 #
 #Command aliases
 #
@@ -73,12 +81,16 @@ alias s=ssh
 alias serve='python -m SimpleHTTPServer' # optional arg: port (defaults to 8000)
 alias t=tmux
 alias v=nvim
+alias vim=nvim
 alias pa='php artisan'
 alias gcm='git commit'
 alias ssh_loc_server='ssh artem@192.168.0.102'
 alias kcl='kubectl'
 alias cl='clear'
 alias phpp="php -d xdebug.profiler_enable=1"
-alias python="python3"
 alias lzd='lazydocker'
 alias pw='vim ~/Documents/docs/pw.txt'
+alias v.='vim .'
+alias dss='docker-sync start'
+alias dsst='docker-sync stop'
+alias dsl='docker-sync logs -f'
