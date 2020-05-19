@@ -2,8 +2,8 @@
 # Zsh config
 #
 
-MY_ZSH=$HOME/.zsh
-ZSH=$HOME/.oh-my-zsh 
+MY_ZSH=$HOME/.dotfiles/.zsh
+ZSH=$HOME/.oh-my-zsh
 
 DISABLE_AUTO_UPDATE=true
 
@@ -147,7 +147,7 @@ export SPROMPT="zsh: correct %F{red}'%R'%f to %F{red}'%r'%f [%B%Uy%u%bes, %B%Un%
 #
 
 export HISTSIZE=100000
-export HISTFILE="$HOME/.history"
+export HISTFILE="$MY_ZSH/.history"
 export SAVEHIST=$HISTSIZE
 
 #
@@ -213,16 +213,16 @@ bindkey '^Z' fg-bg
 # Other
 #
 
-source $HOME/.zsh/aliases
-source $HOME/.zsh/common
-source $HOME/.zsh/colors
-source $HOME/.zsh/exports
-source $HOME/.zsh/functions
+source $MY_ZSH/aliases
+source $MY_ZSH/common
+source $MY_ZSH/colors
+source $MY_ZSH/exports
+source $MY_ZSH/functions
 #source $HOME/.zsh/hash
-source $HOME/.zsh/path
-source $HOME/.zsh/vars
+source $MY_ZSH/path
+source $MY_ZSH/vars
 
-test -e $HOME/.zsh/functions.private && source $HOME/.zsh/functions.private
+test -e $MY_ZSH/functions.private && source $MY_ZSH/functions.private
 
 #
 # Third-party
@@ -335,7 +335,7 @@ fi
 HOST_RC=$MY_ZSH/host/$(hostname -s)
 test -f $HOST_RC && source $HOST_RC
 
-LOCAL_RC=$HOME/.zshrc.local
+LOCAL_RC=$MY_ZSH/.zshrc.local
 test -f $LOCAL_RC && source $LOCAL_RC
 
 

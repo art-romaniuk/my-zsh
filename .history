@@ -1,0 +1,15 @@
+: 1589919218:0;fg
+: 1589919342:0;source ~/.zshrc
+: 1589919347:0;ls
+: 1589919359:0;ll
+: 1589919360:0;gst
+: 1589919362:0;ll
+: 1589919408:0;rm ~/.vimrc
+: 1589919411:0;vim ll
+: 1589919469:0;git diff master/.zshrc mac/.zshrc
+: 1589919523:0;git diff -- master mac .zshrc
+: 1589919554:0;gco mac
+: 1589919556:0;gst
+: 1589919560:0;g diff
+: 1589919582:0;gco -b opensuse
+: 1589919585:0;gaa
