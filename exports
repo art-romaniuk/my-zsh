@@ -59,3 +59,7 @@ export GPG_TTY=$(tty)
 
 export GOPATH=~/code/go
 
+# Dedo
+export DENO_INSTALL="/home/artem/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+

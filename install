@@ -1,24 +1,26 @@
 #!/usr/bin/env bash
 
 # Colors
-RED="\033[0;31m"
-GREEN="\033[0;32m"
+red="\033[0;31m"
+green="\033[0;32m"
 
-BOLD="\033[1m"
+bold="\033[1m"
+
+package='zypper'
 
 is_installed () {
      which $1
 }
 
 install_via_package () {
-    sudo apt install -y $1
+    sudo package install -y $1
 }
 
 install () {
     if is_installed $1; then
-        echo -e "$BOLD $1 $GREEN- is installed!"
+        echo -e "$bold $1 $green- is installed!"
     else
-        echo -e "Installing $BOLD $1 ..."
+        echo -e "Installing $bold $1 ..."
         install_via_package $1
     fi
 }
@@ -54,4 +56,4 @@ exec zsh -l
 # Set zsh as default shell
 sudo chsh -s $(which zsh)
 
-echo -e "$BOLD $GREEN Log out and login back again to use your new default shell."
+echo -e "$bold $green Log out and login back again to use your new default shell."

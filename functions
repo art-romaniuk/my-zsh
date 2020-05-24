@@ -27,28 +27,6 @@ function history() {
   builtin history ${1:-$DEFAULT}
 }
 
-function mosh() {
-  emulate -L zsh
-
-  if [[ -z "$@" ]]; then
-    # common case: getting to my workstation
-    command mosh -6 sandbox
-  else
-    command mosh "$@"
-  fi
-}
-
-function mvim() {
-  emulate -L zsh
-
-  # Makes user-installed fonts visible to MacVim.
-  if which reattach-to-user-namespace &> /dev/null ; then
-    reattach-to-user-namespace mvim
-  else
-    command mvim
-  fi
-}
-
 function scratch() {
   local SCRATCH=$(mktemp -d)
   echo 'Spawing subshell in scratch directory:'
@@ -60,6 +38,7 @@ function scratch() {
 # fbr - checkout git branch
 fbr() {
   local branches branch
+
   branches=$(git --no-pager branch -vv) &&
   branch=$(echo "$branches" | fzf +m) &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
@@ -251,6 +230,7 @@ _append_to_path() {
 ## fbr - checkout git branch (including remote branches)
 fbr() {
   local branches branch
+
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
            fzf --reverse -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
@@ -258,12 +238,11 @@ fbr() {
 }
 
 # dbr - checkout git branch (including remote branches)
-dbr() {
+fbrd() {
   local branches branch
+
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
            fzf --reverse -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git branch -d $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
-
-
