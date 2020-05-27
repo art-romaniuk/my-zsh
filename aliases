@@ -30,6 +30,7 @@ alias -g R=";clear;test -n "$TMUX" && tmux clear-history;"
 
 alias d="docker"
 alias dc="docker-compose"
+alias dce="docker-compose exec"
 alias t="tmux"
 alias g="git"
 alias docker_es="cd ~/www/EssayDaddy/docker/developers/local/admin"

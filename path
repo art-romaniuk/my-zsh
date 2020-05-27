@@ -11,5 +11,7 @@ PATH=$PATH:$SYSTEM_PATH
 PATH=$PATH:$EC2_HOME/bin
 PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/.cabal/bin
+PATH=$PATH:$HOME/.dotfiles/diff-so-fancy
+
 export PATH
 

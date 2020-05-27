@@ -375,8 +375,8 @@ BASE16_SHELL=$MY_ZSH/plugins/base16-shell/
 # fzf via local installation
 if [ -e $HOME/.fzf ]; then
     _append_to_path ~/.fzf/bin
-    source $HOME~/.fzf/shell/key-bindings.zsh
-    source $HOME~/.fzf/shell/completion.zsh
+    source $HOME/.fzf/shell/key-bindings.zsh
+    source $HOME/.fzf/shell/completion.zsh
 fi
 
 # fzf + ag configuration
