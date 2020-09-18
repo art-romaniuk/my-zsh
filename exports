@@ -57,9 +57,15 @@ export CLICOLOR=true
 
 export GPG_TTY=$(tty)
 
-export GOPATH=~/code/go
-
 # Dedo
 export DENO_INSTALL="/home/artem/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+# Go
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+
+export GOPATH=$HOME/golib
+export PATH=$PATH:$GOPATH/bin
+export GOPATH=$GOPATH:$HOME/www/go
 
