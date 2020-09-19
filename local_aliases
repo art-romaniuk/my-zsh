@@ -9,5 +9,10 @@ alias dcup="docker-compose up"
 alias dcst="docker-compose stop"
 alias dcl="docker-compose logs -f"
 
+
 ############## Phpunit #############
 alias phpunit="vendor/bin/phpunit"
+
+
+############## php #############
+alias php='/usr/local/Cellar/php/7.4.8_1/bin/php'

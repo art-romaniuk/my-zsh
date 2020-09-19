@@ -12,6 +12,7 @@ PATH=$PATH:$EC2_HOME/bin
 PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/.cabal/bin
 PATH=$PATH:$HOME/.dotfiles/diff-so-fancy
+PATH=$PATH:$HOME/.symfony/bin:$PATH
 
 export PATH
 

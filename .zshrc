@@ -381,8 +381,9 @@ fi
 
 # fzf + ag configuration
 if _has fzf && _has ag; then
-    export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+    export FZF_DEFAULT_COMMAND='ag --follow --hidden --ignore .git -g ""'
 fi
+
 
 # JellyX colors
 # Exclude those directories even if not listed in .gitignore, or if .gitignore is missing
@@ -402,7 +403,8 @@ export FZF_DEFAULT_OPTS="
     --inline-info
     --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid  {} 2> /dev/null || echo {}'
 "
-set -g FZF_CTRL_T_COMMAND "command find -L \$dir -type f 2> /dev/null | sed '1d; s#^\./##'"
+set -g FZF_CTRL_T_COMMAND "command find -LHP \$dir -type f 2> /dev/null | sed '1d; s#^\./##'"
+
 
 export BAT_THEME="TwoDark"
 export FZF_CTRL_T_OPTS="$FZF_COMPLETION_OPTS"
