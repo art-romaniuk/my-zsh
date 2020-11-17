@@ -63,7 +63,7 @@ alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
 alias h=history
 alias j=jump
 alias l='ls -F'
-alias ll='ls -laF'
+alias ll='ls -laF --time-style=+"%Y-%m-%d %H:%M:%S"'
 alias m=mosh
 alias o='git oneline'
 alias p='git patch'
