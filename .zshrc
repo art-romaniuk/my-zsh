@@ -29,6 +29,7 @@ plugins=(
     wd
     z
     jump
+    k
 )
 
 source ~/.oh-my-zsh/oh-my-zsh.sh
@@ -434,3 +435,12 @@ if which ruby >/dev/null && which gem >/dev/null; then
 fi
 #########################################################################
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/user/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/user/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/user/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/user/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/.dotfiles/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh" ]; then
+    source "$HOME/.dotfiles/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh";
+fi

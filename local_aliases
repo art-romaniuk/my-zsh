@@ -13,6 +13,17 @@ alias dcl="docker-compose logs -f"
 ############## Phpunit #############
 alias phpunit="vendor/bin/phpunit"
 
+############## CodeSniffer #############
+alias phpcs="vendor/bin/phpcs"
+
+############## Psalm #############
+alias psalm="vendor/bin/psalm"
+
+############## Circleci #############
+alias ci="circleci"
+
 
 ############## php #############
-alias php='/usr/local/Cellar/php/7.4.8_1/bin/php'
+alias swphp7.3="brew unlink php && brew link --overwrite php@7.3"
+alias swphp7.4="brew unlink php && brew link --overwrite php@7.4"
+alias swphp8="brew unlink php && brew link --overwrite php@8"

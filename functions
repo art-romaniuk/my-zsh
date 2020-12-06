@@ -70,7 +70,7 @@ fbrd() {
   local branches branch
   branches=$(git --no-pager branch -vv) &&
   branch=$(echo "$branches" | fzf +m) &&
-  git branch -d $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+  git branch -d $(echo "$branch" | awk '{print $1}' | sed "s/.* //") && fbrd
 }
 
 # dbrp - delete branch
