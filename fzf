@@ -1,0 +1,44 @@
+BASE17_SHELL=$MY_ZSH/plugins/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fzf via local installation
+if [ -e $HOME/.fzf ]; then
+    _append_to_path ~/.fzf/bin
+    source $HOME/.fzf/shell/key-bindings.zsh
+    source $HOME/.fzf/shell/completion.zsh
+fi
+
+# fzf + ag configuration
+if _has fzf && _has ag; then
+    export FZF_DEFAULT_COMMAND='ag --follow --hidden --ignore .git --skip-vcs-ignore -g ""'
+fi
+
+
+# JellyX colors
+# Exclude those directories even if not listed in .gitignore, or if .gitignore is missing
+FD_OPTIONS="--follow --exclude .git --exclude node_modules --include vendor"
+
+# Change behavior of fzf dialogue
+export FZF_DEFAULT_OPTS="
+    --color fg:-1,bg:-1,hl:230,fg+:3,bg+:233,hl+:229
+    --color info:150,prompt:110,spinner:150,pointer:167,marker:174
+    --layout=reverse
+    --ansi
+    --extended
+    --no-mouse
+    --height 90% -1
+    --reverse
+    --multi
+    --inline-info
+    --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid  {} 2> /dev/null || echo {}'
+"
+set -g FZF_CTRL_T_COMMAND "command find -LHP \$dir -type f 2> /dev/null | sed '1d; s#^\./##'"
+
+
+export BAT_THEME="TwoDark"
+export FZF_CTRL_T_OPTS="$FZF_COMPLETION_OPTS"
+
+# [ -f $MY_ZSH/plugins/fzf-forgit/forgit.plugin.zsh ] && source $MY_ZSH/plugins/fzf-forgit/forgit.plugin.zsh

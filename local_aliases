@@ -8,10 +8,12 @@ alias dcsst="docker-sync stop && docker-compose stop"
 alias dcup="docker-compose up"
 alias dcst="docker-compose stop"
 alias dcl="docker-compose logs -f"
+alias dcc="dc -f docker-compose.yml -f docker-compose-daemon-workers.yml -f docker-compose-queue-workers.yml"
+alias dcce="dc -f docker-compose.yml -f docker-compose-daemon-workers.yml -f docker-compose-queue-workers.yml exec"
 
 
 ############## Phpunit #############
-alias phpunit="vendor/bin/phpunit"
+alias phpunit=" DATABASE_URL='mysql://exchanger_admin:123456@127.0.0.1:3306/exchange_admin' vendor/bin/phpunit"
 
 ############## CodeSniffer #############
 alias phpcs="vendor/bin/phpcs"
@@ -22,8 +24,18 @@ alias psalm="vendor/bin/psalm"
 ############## Circleci #############
 alias ci="circleci"
 
+############## Symfony Console #############
+alias console="./bin/console"
+
 
 ############## php #############
 alias swphp7.3="brew unlink php && brew link --overwrite php@7.3"
 alias swphp7.4="brew unlink php && brew link --overwrite php@7.4"
 alias swphp8="brew unlink php && brew link --overwrite php@8"
+
+############## Python #############
+alias python=/usr/local/bin/python3 
+#
+############## K8S #############
+alias kub="kubectl"
+alias mkub="minikube"

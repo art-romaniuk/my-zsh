@@ -1,4 +1,4 @@
-# Global aliases
+#debug,coverage Global aliases
 # (work at any position within the command line)
 #
 
@@ -48,6 +48,7 @@ alias dcuposx="dcoosx up"
 alias gethr='geth --rinkeby'
 alias btcl='bitcoin-cli -testnet'
 alias ....='cd ../..'
+alias ..='cd ../'
 alias :e=vim
 alias :qa=exit
 alias :sp='test -n "$TMUX" && tmux split-window'
@@ -82,9 +83,20 @@ alias ssh_loc_server='ssh artem@192.168.0.102'
 alias kcl='kubectl'
 alias cl='clear'
 alias phpp="php -d xdebug.profiler_enable=1"
+alias phpa="php -d xdebug.mode=develop,debug,coverage"
+alias cphp8="brew unlink php && brew link php@8.0"
+alias cphp7="brew unlink php && brew link php@7.3"
+alias cphp="brew unlink php && brew link php"
 alias lzd='lazydocker'
 alias pw='vim ~/Documents/docs/pw.txt'
 alias v.='vim .'
 alias dss='docker-sync start'
 alias dsst='docker-sync stop'
 alias dsl='docker-sync logs -f'
+
+# Kubernetes
+alias ku='kubectl'
+alias mi='minikube'
+
+# Tree utils
+alias tree='tree -C'

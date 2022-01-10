@@ -65,12 +65,12 @@ fbr() {
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
-# fbrd - delete branch
+# fbrd - delete merged branch
 fbrd() {
   local branches branch
-  branches=$(git --no-pager branch -vv) &&
+  branches=$(git --no-pager branch -vv --merged) &&
   branch=$(echo "$branches" | fzf +m) &&
-  git branch -d $(echo "$branch" | awk '{print $1}' | sed "s/.* //") && fbrd
+  (git branch -d $(echo "$branch" | awk '{print $1}' | sed "s/.* //") || fbrd) && fbrd
 }
 
 # dbrp - delete branch
@@ -115,98 +115,6 @@ fcoc() {
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
   git checkout $(echo "$commit" | sed "s/ .*//")
 }
-
-# Commented out by me, because ssh didn't wokr with this function
-#function ssh() {
-#  emulate -L zsh
-#
-#  if [[ -z "$@" ]]; then
-#    # common case: getting to my workstation
-#    command ssh sandbox-clipper
-#  else
-#    local LOCAL_TERM=$(echo -n "$TERM" | sed -e s/tmux/screen/)
-#    env TERM=$LOCAL_TERM command ssh "$@"
-#  fi
-#}
-
-#function tmux() {
-  #emulate -L zsh
-
-  # Make sure even pre-existing tmux sessions use the latest SSH_AUTH_SOCK.
-  # (Inspired by: https://gist.github.com/lann/6771001)
-  #
-  # Commented by me
-  #local SOCK_SYMLINK=~/.ssh/ssh_auth_sock
-  #if [ -r "$SSH_AUTH_SOCK" -a ! -L "$SSH_AUTH_SOCK" ]; then
-  #  ln -sf "$SSH_AUTH_SOCK" $SOCK_SYMLINK
-  #fi
-
-  # If provided with args, pass them through.
-  #if [[ -n "$@" ]]; then
-  #  env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux "$@"
-  #  return
-  #fi
-
-  # Check for .tmux file (poor man's Tmuxinator).
-  #if [ -x .tmux ]; then
-    # Prompt the first time we see a given .tmux file before running it.
-  #  local DIGEST="$(openssl sha -sha512 .tmux)"
-  #  if ! grep -q "$DIGEST" ~/..tmux.digests 2> /dev/null; then
-  #    cat .tmux
-  #    read -k 1 -r \
-  #      'REPLY?Trust (and run) this .tmux file? (t = trust, otherwise = skip) '
-  #    echo
-  #    if [[ $REPLY =~ ^[Tt]$ ]]; then
-  #      echo "$DIGEST" >> ~/..tmux.digests
-  #      ./.tmux
-  #      return
-  #    fi
-  #  else
-  #    ./.tmux
-  #    return
-  #  fi
-  #fi
-
-  # Attach to existing session, or create one, based on current directory.
-  #SESSION_NAME=$(basename "$(pwd)")
-  #env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux new -A -s "$SESSION_NAME"
-#}
-
-# Bounce the Dock icon, if iTerm does not have focus.
-function bounce() {
-  if [ -n "$TMUX" ]; then
-    print -Pn "\ePtmux;\e\e]1337;RequestAttention=1\a\e\\"
-  else
-    print -Pn "\e]1337;RequestAttention=1\a"
-  fi
-}
-
-# regmv = regex + mv (mv with regex parameter specification)
-#   example: regmv '/\.tif$/.tiff/' *
-#   replaces .tif with .tiff for all files in current dir
-#   must quote the regex otherwise "\." becomes "."
-# limitations: ? doesn't seem to work in the regex, nor *
-regmv()
-{
-  if [ $# -lt 2 ]; then
-    echo "  Usage: regmv 'regex' file(s)"
-    echo "  Where:       'regex' should be of the format '/find/replace/'"
-    echo "Example: regmv '/\.tif\$/.tiff/' *"
-    echo "   Note: Must quote/escape the regex otherwise \"\.\" becomes \".\""
-    return 1
-  fi
-  regex="$1"
-  shift
-  while [ -n "$1" ]
-  do
-    newname=$(echo "$1" | sed "s${regex}g")
-    if [ "${newname}" != "$1" ]; then
-      mv -i -v "$1" "$newname"
-    fi
-    shift
-  done
-}
-
 
 # Convenience function for jumping to hashed directory aliases
 # (ie. `j rn` -> `jump rn` -> `cd ~rn`).
