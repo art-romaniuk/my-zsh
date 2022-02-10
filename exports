@@ -31,3 +31,7 @@ export SAVEHIST=$HISTSIZE
 # Less configuration 
 # -X leaves file contents on the screen when less exits.
 export LESS="-XFR"
+
+#########################################################################
+# Enable OCI (exerimental features for HELM)
+export HELM_EXPERIMENTAL_OCI=1
