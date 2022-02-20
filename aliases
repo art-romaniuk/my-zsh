@@ -100,3 +100,5 @@ alias mi='minikube'
 
 # Tree utils
 alias tree='tree -C'
+
+alias kill='kill -9'

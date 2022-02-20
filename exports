@@ -1,4 +1,8 @@
 #########################################################################
+# Default editor
+export EDITOR=nvim
+
+#########################################################################
 # Golang configs
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
